@@ -1,10 +1,54 @@
 @import '/src/styles/variables';
 
 .button {
+  position: relative;
+  width: 100%;
   padding: 10px 16px;
-  background-color: $primary_purple;
   border: none;
+  cursor: pointer;
+  border-radius: 5px;
   font-size: 1rem;
   line-height: 24px;
   color: $primary_white;
+  transition: background-color 0.2s linear;
+
+  .wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1px 0;
+  }
+}
+
+.buttonPurpleDefault {
+  background-color: $primary_purple;
+
+  &:hover {
+    background-color: $secondary_purple;
+  }
+}
+
+.buttonPurpleDefaultDisabled {
+  background-color: rgba($color: $primary_purple, $alpha: 0.3);
+  color: rgba($color: $primary_white, $alpha: 0.2);
+  cursor: default;
+}
+
+.buttonGreenDefault {
+  background-color: $primary_green;
+
+  &:hover {
+    background-color: $secondary_green;
+  }
+}
+
+.buttonGreenDefaultDisabled {
+  background-color: rgba($color: #37ac00, $alpha: 0.3);
+  color: rgba($color: $primary_white, $alpha: 0.2);
+  cursor: default;
+  pointer-events: none;
+}
+
+.buttonPurpleActive {
+  background-color: $primary_yellow;
 }

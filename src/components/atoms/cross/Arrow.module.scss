@@ -1,0 +1,8 @@
+.cross {
+  opacity: 0.5;
+  transition: opacity 0.2s linear;
+
+  &:hover {
+    opacity: 1;
+  }
+}

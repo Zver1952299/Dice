@@ -1,0 +1,14 @@
+@import '/src/styles/variables';
+
+.select {
+  width: 338px;
+  height: 40px;
+  padding: 8px 12px;
+  line-height: 24px;
+  font-size: 1rem;
+  border: 1px solid $secondary_gray;
+  border-radius: 6px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}

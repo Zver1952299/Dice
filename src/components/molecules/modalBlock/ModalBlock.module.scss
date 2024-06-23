@@ -1,0 +1,19 @@
+.block {
+  position: relative;
+  width: 434px;
+  height: 256px;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #250e36;
+  border: 1px solid #4b2964;
+
+  .cross {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    cursor: pointer;
+  }
+}

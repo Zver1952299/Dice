@@ -1,0 +1,190 @@
+@import '../../../styles/variables';
+
+.block {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 338px;
+  width: 100%;
+  height: 66px;
+}
+
+.react-select {
+  &__control {
+    max-width: 100% !important;
+    width: 100% !important;
+    min-height: 40px !important;
+    height: 100% !important;
+    background-color: $primary_white !important;
+    border: 1px solid $secondary_gray !important;
+    border-radius: 6px !important;
+
+    .react-select__indicator {
+      transform: rotate(360deg);
+      transition: transform 0.2s linear;
+    }
+
+    &--menu-is-open {
+      .react-select__indicator {
+        transform: rotate(180deg);
+        transition: transform 0.2s linear;
+      }
+    }
+
+    &--is-focused {
+      border: 1px solid #3893ff !important;
+      box-shadow: none !important;
+    }
+  }
+
+  &__placeholder {
+    font-family: 'Inter', serif !important;
+    font-weight: 400 !important;
+    font-size: 1rem !important;
+    color: $primary_black !important;
+    text-align: left !important;
+    padding: 0 !important;
+  }
+
+  &__single-value {
+    font-family: 'Inter', serif !important;
+    font-weight: 300 !important;
+    font-size: 1rem !important;
+    color: $primary_black !important;
+    text-align: left;
+    padding: 0 2px !important;
+    line-height: 1 !important;
+  }
+
+  &__indicators {
+    margin-right: 10px !important;
+  }
+
+  &__indicator-separator {
+    display: none !important;
+  }
+
+  &__menu {
+    margin-top: 0 !important;
+    background-color: $primary_white !important;
+
+    &-list {
+      padding: 10px 0 !important;
+    }
+
+    &-list::-webkit-scrollbar {
+      width: 4px;
+      height: 0px;
+    }
+
+    &-list::-webkit-scrollbar-track {
+      background: $primary_black;
+    }
+
+    &-list::-webkit-scrollbar-thumb {
+      background: $primary_white;
+    }
+
+    &-list::-webkit-scrollbar-thumb:hover {
+      background: $primary_white;
+    }
+
+    &-notice {
+      height: 36px !important;
+      color: $primary_gray !important;
+      font-family: 'Inter', serif !important;
+      font-weight: 300 !important;
+      font-size: 1rem !important;
+      padding: 0 0 10px !important;
+      margin-left: 16px !important;
+      margin-right: 40px !important;
+      text-align: left !important;
+      line-height: 1.4 !important;
+    }
+  }
+
+  &__option {
+    height: 22px !important;
+    color: $primary_black !important;
+    font-family: 'Inter', serif !important;
+    font-weight: 300 !important;
+    font-size: 1rem !important;
+    line-height: 1.4;
+    padding: 2px 0 !important;
+    text-align: left !important;
+    padding-left: 12px !important;
+
+    &--is-selected {
+      background-color: $primary_white !important;
+    }
+
+    &--is-focused {
+      background-color: $primary_gray !important;
+    }
+  }
+
+  &__input-container {
+    height: 36px !important;
+    color: $primary_gray !important;
+    font-family: 'Inter', serif !important;
+    font-weight: 300 !important;
+    font-size: 0.8rem !important;
+    padding-bottom: 1px !important;
+    text-align: left !important;
+    padding-left: 16px !important;
+  }
+}
+
+:root[data-theme='light'] {
+  .react-select {
+    &__control {
+      background-color: $primary_white !important;
+      border: 1px solid $primary_gray !important;
+
+      &--is-focused {
+        border: 1px solid $primary_gray !important;
+        box-shadow: none !important;
+      }
+    }
+
+    &__placeholder {
+      color: $secondary_gray !important;
+    }
+
+    &__single-value {
+      color: $primary_gray !important;
+    }
+
+    &__menu {
+      background-color: $primary_white !important;
+
+      &-list::-webkit-scrollbar-track {
+        background: $primary_white;
+      }
+
+      &-list::-webkit-scrollbar-thumb {
+        background: $secondary_gray;
+      }
+
+      &-list::-webkit-scrollbar-thumb:hover {
+        background: $secondary_gray;
+      }
+    }
+
+    &__option {
+      color: $primary_gray !important;
+
+      &--is-selected {
+        background-color: $primary_gray !important;
+      }
+
+      &--is-focused {
+        background-color: $primary_gray !important;
+      }
+    }
+
+    &__input-container {
+      color: $primary_gray !important;
+    }
+  }
+}
