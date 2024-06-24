@@ -1,10 +1,6 @@
 import { create } from 'zustand';
 
-type UseModalType = {
-  isOpen: boolean;
-  changeOnTrue: () => void;
-  changeOnFlase: () => void;
-};
+import { UseModalType } from '../types/types';
 
 export const useModal = create<UseModalType>((set) => ({
   isOpen: false,

@@ -1,4 +1,5 @@
 import TitlePlayground from '../../atoms/titlePlayground';
+
 import styles from './StartView.module.scss';
 
 const StartView = () => {

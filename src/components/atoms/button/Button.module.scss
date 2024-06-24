@@ -32,6 +32,10 @@
   background-color: rgba($color: $primary_purple, $alpha: 0.3);
   color: rgba($color: $primary_white, $alpha: 0.2);
   cursor: default;
+
+  &:hover {
+    background-color: rgba($color: $primary_purple, $alpha: 0.3);
+  }
 }
 
 .buttonGreenDefault {

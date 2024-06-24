@@ -1,5 +1,6 @@
-import { useDice } from '../../../stores/useDice';
 import clsx from 'clsx';
+
+import { useDice } from '../../../stores/useDice';
 
 import styles from './PlateWithNumber.module.scss';
 

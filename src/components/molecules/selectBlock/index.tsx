@@ -1,10 +1,14 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 import { useState } from 'react';
 import Select, { components, DropdownIndicatorProps } from 'react-select';
+
+import { useDice } from '../../../stores/useDice';
+
 import LabelText from '../../atoms/labelText';
 
 import arrow from '/arrows/arrowDown.svg';
 import './SelectBlock.scss';
-import { useDice } from '../../../stores/useDice';
 
 const SelectBlock = () => {
   const [value, setValue] = useState('1');

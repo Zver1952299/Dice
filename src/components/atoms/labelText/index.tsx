@@ -1,4 +1,5 @@
 import { LabelTextProps } from '../../../types/types';
+
 import styles from './LabelText.module.scss';
 
 const LabelText = ({ text }: LabelTextProps) => {

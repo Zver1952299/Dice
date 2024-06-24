@@ -1,6 +1,8 @@
 import { useAuth } from '../../../stores/useAuth';
 import { useDice } from '../../../stores/useDice';
+
 import { TitlePlaygroundProps } from '../../../types/types';
+
 import styles from './TitlePlayground.module.scss';
 
 const TitlePlayground = ({ text }: TitlePlaygroundProps) => {

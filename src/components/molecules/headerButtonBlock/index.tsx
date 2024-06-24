@@ -1,5 +1,7 @@
 import { useModal } from '../../../stores/useModal';
+
 import Button from '../../atoms/button';
+
 import styles from './headerButtonBlock.module.scss';
 
 const HeaderButtonBlock = () => {

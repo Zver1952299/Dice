@@ -1,4 +1,4 @@
-const changingBalance = (double, win, bet) => {
+const changingBalance = (double: boolean, win: boolean, bet: number) => {
   if (double) {
     if (win) {
       return bet * 2;

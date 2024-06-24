@@ -1,4 +1,5 @@
 import { LogoProps } from '../../../types/types';
+
 import styles from './Logo.module.scss';
 
 const Logo = ({ text }: LogoProps) => {

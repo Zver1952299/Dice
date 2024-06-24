@@ -1,22 +1,8 @@
 import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
-import changingBalance from '../utils/changingBalance';
 
-interface UseDiceType {
-  total: number;
-  winAmount: number;
-  value: string | null;
-  bet: number;
-  btns: { [key: number]: boolean };
-  number: number;
-  isActiveStart: boolean;
-  isWin: boolean;
-  setValue: (newValue: string) => void;
-  setBet: (newBet: number) => void;
-  setBtns: (id: number) => void;
-  onIsActiveStart: () => void;
-  setTotal: () => void;
-}
+import changingBalance from '../utils/changingBalance';
+import { UseDiceType } from '../types/types';
 
 export const useDice = create<UseDiceType, ['zustand/immer', unknown][]>(
   immer((set) => ({
@@ -28,7 +14,7 @@ export const useDice = create<UseDiceType, ['zustand/immer', unknown][]>(
     number: 0,
     isActiveStart: false,
     isWin: false,
-    setValue: (newValue) =>
+    setValue: (newValue) => {
       set((state) => {
         state.value = newValue;
 
@@ -53,7 +39,11 @@ export const useDice = create<UseDiceType, ['zustand/immer', unknown][]>(
           state.total += changingBalance(true, state.isWin, state.bet);
           state.winAmount = Math.abs(changingBalance(true, state.isWin, state.bet));
         }
-      }),
+      });
+      set((state) => {
+        window.localStorage.setItem('total', state.total.toString());
+      });
+    },
     setBet: (newBet) => set({ bet: newBet }),
     setBtns: (id) =>
       set((state) => {
@@ -88,5 +78,6 @@ export const useDice = create<UseDiceType, ['zustand/immer', unknown][]>(
         }
       }),
     setTotal: () => set({ total: 100 }),
+    setTotalFromLocal: (sum) => set({ total: sum }),
   })),
 );

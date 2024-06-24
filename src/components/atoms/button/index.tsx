@@ -1,12 +1,25 @@
-import clsx from 'clsx';
-
-import { ButtonProps } from '../../../types/types';
-import styles from './Button.module.scss';
-import { useDice } from '../../../stores/useDice';
 import { useEffect } from 'react';
+import clsx from 'clsx';
+import { PulseLoader } from 'react-spinners';
+
+import { useDice } from '../../../stores/useDice';
 import { useAuth } from '../../../stores/useAuth';
 
-const Button = ({ text, type, dice, onOpen, id, plate, enter }: ButtonProps) => {
+import LabelText from '../labelText';
+
+import { ButtonProps } from '../../../types/types';
+
+import styles from './Button.module.scss';
+
+const Button = ({ text, type, dice, onOpen, id, plate, enter, isError }: ButtonProps) => {
+  const login = useAuth((state) => state.login);
+  const isUnauthorized = useAuth((state) => state.isUnauthorized);
+  const setTimer = useAuth((state) => state.setTimer);
+  const loading = useAuth((state) => state.loading);
+  const btns = useDice((state) => state.btns);
+  const setBtns = useDice((state) => state.setBtns);
+  const onStart = useDice((state) => state.onIsActiveStart);
+
   const clickBtn = () => {
     if (dice && dice.current) {
       const elem = dice.current.children[0] as HTMLButtonElement;
@@ -16,30 +29,30 @@ const Button = ({ text, type, dice, onOpen, id, plate, enter }: ButtonProps) => 
       onOpen();
     }
     if (id) {
-      setBtns(id);
+      setBtns(+id);
     }
     onStart();
   };
 
-  const login = useAuth((state) => state.login);
-
   const onAuth = () => {
     login();
+    setTimer();
   };
-
-  const btns = useDice((state) => state.btns);
-  const setBtns = useDice((state) => state.setBtns);
-  const onStart = useDice((state) => state.onIsActiveStart);
 
   useEffect(() => {
     onStart();
   }, [onStart]);
 
-  type = btns[id] ? 'active' : type;
+  const isUnauthorizedTimer = isUnauthorized ? <LabelText text="Неверный логин/пароль" /> : text;
+
+  if (id) {
+    type = btns[+id] ? 'active' : type;
+  }
 
   if (enter) {
     return (
       <button
+        disabled={isError}
         onClick={() => onAuth()}
         className={clsx(
           styles.button,
@@ -48,8 +61,9 @@ const Button = ({ text, type, dice, onOpen, id, plate, enter }: ButtonProps) => 
           { [styles.buttonGreenDefault]: type == 'green' },
           { [styles.buttonPurpleDefault]: type == 'purple' },
           { [styles.buttonPurpleDefaultDisabled]: type == 'purpleDisabled' },
+          { [styles.buttonPurpleDefaultDisabled]: isError == true },
         )}>
-        {text}
+        {loading ? <PulseLoader color="#fff" size={19} loading={loading} /> : isUnauthorizedTimer}
       </button>
     );
   }

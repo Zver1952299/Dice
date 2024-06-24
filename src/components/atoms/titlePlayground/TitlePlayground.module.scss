@@ -11,3 +11,13 @@
   font-size: 1rem;
   color: #fff;
 }
+
+@media (max-width: 767px) {
+  .text {
+    font-size: 1rem;
+  }
+
+  .supText {
+    font-size: 0.8rem;
+  }
+}

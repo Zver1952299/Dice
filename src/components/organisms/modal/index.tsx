@@ -1,10 +1,13 @@
-import React from 'react';
-import styles from './Modal.module.scss';
 import { motion, AnimatePresence } from 'framer-motion';
+
 import { useModal } from '../../../stores/useModal';
 import { useDice } from '../../../stores/useDice';
 
-const Modal = ({ children, isOpen }: { children: React.ReactNode }) => {
+import { ModalType } from '../../../types/types';
+
+import styles from './Modal.module.scss';
+
+const Modal = ({ children, isOpen }: ModalType) => {
   const onChangeFalse = useModal((state) => state.changeOnFlase);
   const setTotal = useDice((state) => state.setTotal);
 

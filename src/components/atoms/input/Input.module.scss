@@ -35,15 +35,4 @@
 .div {
   position: relative;
   display: inline-block;
-
-  &.error {
-    &::after {
-      content: 'Error';
-      position: absolute;
-      // display: block;
-      bottom: -16px;
-      left: 0px;
-      color: #ff0000;
-    }
-  }
 }

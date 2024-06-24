@@ -2,30 +2,21 @@ import axios from 'axios';
 import { create } from 'zustand';
 import { useModal } from './useModal';
 
-type UseAuthType = {
-  user: string;
-  password: string;
-  loading: boolean;
-  error: string | null;
-  isAuth: boolean;
-  setUser: (userName: string) => void;
-  setPassword: (pass: string) => void;
-  login: () => void;
-  getUser: () => void;
-  setIsAuth: (bool: boolean) => void;
-};
+import { UseAuthType } from '../types/types';
 
 export const useAuth = create<UseAuthType>((set, get) => ({
   user: '',
   password: '',
-  loading: false,
+  loading: true,
   error: null,
   isAuth: false,
+  isUnauthorized: false,
   setUser: (name) => set({ user: name }),
   setPassword: (pass) => set({ password: pass }),
   setIsAuth: (bool) => set({ isAuth: bool }),
+  setIsUnauthorized: (bool) => set({ isUnauthorized: bool }),
   login: async () => {
-    set({ loading: true, isAuth: false });
+    set({ loading: true, isAuth: false, isUnauthorized: false });
     try {
       await axios
         .post(
@@ -39,9 +30,12 @@ export const useAuth = create<UseAuthType>((set, get) => ({
           },
         )
         .then(() => {
-          set({ isAuth: true });
+          set({ isAuth: true, isUnauthorized: false, loading: false });
           const onClose = useModal.getState().changeOnFlase;
           onClose();
+        })
+        .catch(() => {
+          set({ isUnauthorized: true });
         });
     } catch (error) {
       console.log('err', error);
@@ -57,14 +51,18 @@ export const useAuth = create<UseAuthType>((set, get) => ({
           withCredentials: true,
         })
         .then(() => {
-          set({ isAuth: true });
-
-          //   const onClose = useModal.getState().changeOnFlase;
-          //   onClose();
+          set({ loading: false, isAuth: true });
         })
         .catch((err) => ({ err: err.response.data.message }));
     } catch (error) {
       console.log(error);
+    } finally {
+      set({ loading: false });
     }
+  },
+  setTimer: () => {
+    setTimeout(() => {
+      set({ isUnauthorized: false });
+    }, 2000);
   },
 }));

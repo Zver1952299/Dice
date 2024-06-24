@@ -1,5 +1,6 @@
 import { useAuth } from '../../../stores/useAuth';
 import { useDice } from '../../../stores/useDice';
+
 import styles from './Balance.module.scss';
 
 const Balance = () => {
