@@ -24,6 +24,7 @@ const MainPage = () => {
   const setUser = useAuth((state) => state.setUser);
   const setPassword = useAuth((state) => state.setPassword);
   const isAuth = useAuth((state) => state.isAuth);
+  const isValidation = useAuth((state) => state.isValidation);
 
   const [userName, setUserName] = useState('');
   const [pass, setPass] = useState('');
@@ -51,17 +52,17 @@ const MainPage = () => {
             placeholder="Login"
             value={userName}
             onChange={setUserName}
-            isError={/^$/.test(userName)}
+            isError={isValidation && /^$/.test(userName)}
           />
-          {/^$/.test(userName) && <ErrorText text="Введите логин" top="94" />}
+          {isValidation && /^$/.test(userName) && <ErrorText text="Введите логин" top="94" />}
           <Input
             type="password"
             placeholder="Password"
             value={pass}
             onChange={setPass}
-            isError={/^$/.test(pass)}
+            isError={isValidation && /^$/.test(pass)}
           />
-          {/^$/.test(pass) && <ErrorText text="Введите пароль" top="148" />}
+          {isValidation && /^$/.test(pass) && <ErrorText text="Введите пароль" top="148" />}
           <Button type="purple" text="Войти" enter={true} isError={!userName || !pass} />
         </ModalBlock>
       </Modal>

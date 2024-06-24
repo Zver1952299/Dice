@@ -51,6 +51,8 @@ export type UseAuthType = {
   error: string | null;
   isAuth: boolean;
   isUnauthorized: boolean;
+  isValidation: boolean;
+  setIsValidation: (bool: boolean) => void;
   setUser: (userName: string) => void;
   setPassword: (pass: string) => void;
   login: () => void;

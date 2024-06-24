@@ -13,7 +13,6 @@ const Header = () => {
   const loading = useAuth((state) => state.loading);
 
   const rightSide = isAuth ? <Balance /> : <HeaderButtonBlock />;
-  console.log(loading, isAuth);
 
   return (
     <div className={styles.header}>

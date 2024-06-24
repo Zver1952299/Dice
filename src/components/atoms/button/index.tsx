@@ -11,11 +11,14 @@ import { ButtonProps } from '../../../types/types';
 
 import styles from './Button.module.scss';
 
-const Button = ({ text, type, dice, onOpen, id, plate, enter, isError }: ButtonProps) => {
+const Button = ({ text, type, dice, onOpen, id, plate, enter }: ButtonProps) => {
   const login = useAuth((state) => state.login);
+  const user = useAuth((state) => state.user);
+  const password = useAuth((state) => state.password);
   const isUnauthorized = useAuth((state) => state.isUnauthorized);
   const setTimer = useAuth((state) => state.setTimer);
   const loading = useAuth((state) => state.loading);
+  const setIsValidation = useAuth((state) => state.setIsValidation);
   const btns = useDice((state) => state.btns);
   const setBtns = useDice((state) => state.setBtns);
   const onStart = useDice((state) => state.onIsActiveStart);
@@ -35,8 +38,13 @@ const Button = ({ text, type, dice, onOpen, id, plate, enter, isError }: ButtonP
   };
 
   const onAuth = () => {
-    login();
-    setTimer();
+    if (/^$/.test(user) && /^$/.test(password)) {
+      setIsValidation(true);
+    } else {
+      setIsValidation(false);
+      login();
+      setTimer();
+    }
   };
 
   useEffect(() => {
@@ -52,7 +60,7 @@ const Button = ({ text, type, dice, onOpen, id, plate, enter, isError }: ButtonP
   if (enter) {
     return (
       <button
-        disabled={isError}
+        // disabled={isError}
         onClick={() => onAuth()}
         className={clsx(
           styles.button,
@@ -61,7 +69,7 @@ const Button = ({ text, type, dice, onOpen, id, plate, enter, isError }: ButtonP
           { [styles.buttonGreenDefault]: type == 'green' },
           { [styles.buttonPurpleDefault]: type == 'purple' },
           { [styles.buttonPurpleDefaultDisabled]: type == 'purpleDisabled' },
-          { [styles.buttonPurpleDefaultDisabled]: isError == true },
+          // { [styles.buttonPurpleDefaultDisabled]: isError == true },
         )}>
         {loading ? <PulseLoader color="#fff" size={19} loading={loading} /> : isUnauthorizedTimer}
       </button>

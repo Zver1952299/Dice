@@ -11,6 +11,8 @@ export const useAuth = create<UseAuthType>((set, get) => ({
   error: null,
   isAuth: false,
   isUnauthorized: false,
+  isValidation: false,
+  setIsValidation: (bool) => set({ isValidation: bool }),
   setUser: (name) => set({ user: name }),
   setPassword: (pass) => set({ password: pass }),
   setIsAuth: (bool) => set({ isAuth: bool }),
